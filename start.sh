@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # elastic search
 systemctl start elasticsearch
