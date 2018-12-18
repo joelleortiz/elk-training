@@ -9,3 +9,6 @@ systemctl start kibana
 
 # filebeat
 systemctl start filebeat
+
+# metricbeat
+systemctl start metricbeat

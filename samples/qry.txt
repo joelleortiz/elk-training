@@ -1,0 +1,76 @@
+GET logs/_search 
+{
+  "query": {
+    "match": {
+      "type": "application"
+    }
+  }
+}
+
+# RANGE / /SORT
+GET logs/_search 
+{
+  "query": {
+    "range": {
+      "@timestamp": {
+        "gte": "2015-05-05",
+        "lte": "2015-05-07"
+      }
+    }
+  },
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "asc"   
+      }
+    }
+  ]
+}
+
+# AGGS
+
+POST /logs/_search?size=0
+{
+  "aggs": {
+    "durationMs": {
+      "histogram": {
+        "field": "durationMs",
+        "interval": 10
+      }
+    },
+    "avg_duration": {
+      "avg": {
+        "field": "durationMs"
+      }
+    },
+    "min_duration": {
+      "min": {
+        "field": "durationMs"
+      }
+    },
+    "max_duration": {
+      "max": {
+        "field": "durationMs"
+      }
+    }
+  }
+}
+
+# TERM AGG
+POST logs/_search
+{
+  "aggs": {
+  "by_response": {
+    "terms": {
+      "field": "response"
+      },
+      "aggs": {
+        "avg_duration": {
+          "avg": {
+            "field": "durationMs"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-/usr/share/logstash/bin/logstash -f logstash.conf --path.settings=/etc/logstash
+/usr/share/logstash/bin/logstash -f logstash.conf --path.settings=/etc/logstash --config.reload.automatic

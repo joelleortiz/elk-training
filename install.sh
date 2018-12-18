@@ -22,3 +22,6 @@ apt-get install logstash
 
 # install filebeat
 apt-get install filebeat
+
+# install metricbeat
+sudo apt-get install metricbeat
